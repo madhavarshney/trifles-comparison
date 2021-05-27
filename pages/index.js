@@ -35,10 +35,82 @@ const LinkButton = ({ href }) => (
   </a>
 );
 
-// TODO: split into components
+const MainDiffRow = ({
+  advancedMode,
+  play,
+  story,
+  play_text,
+  story_text,
+  entities,
+  pos,
+  annotations
+}) => {
+  const displayPos = ["VERB", "ADJ", "ADV"];
+  const filteredPos = Object.entries(pos)
+    .filter(([type, items]) => displayPos.includes(type))
+    .sort(([a], [b]) => displayPos.indexOf(a) - displayPos.indexOf(b));
+
+  return (
+    <div className="diff-row">
+      <div className="diff-item">
+        <span
+          dangerouslySetInnerHTML={{
+            __html: play_text || ""
+          }}
+        />
+        <NumberIndicator value={play[0]?.index} />
+      </div>
+
+      <div className="diff-item">
+        <span
+          dangerouslySetInnerHTML={{
+            __html: story_text || ""
+          }}
+        />
+        <NumberIndicator value={story[0]?.index} />
+      </div>
+
+      <div className="diff-item annotations">
+        {annotations.map((text, index) =>
+          text ? (
+            <div key={index} className="annotation">
+              {text}
+            </div>
+          ) : null
+        )}
+
+        {advancedMode && entities.length ? (
+          <div className="entities">
+            {Object.entries(groupBy(entities, 1)).map(([type, items]) => (
+              <>
+                <span className="entity-type">{type}</span>
+                <span className="entity-name">
+                  {items.map(([name, type]) => name).join(", ")}
+                </span>
+              </>
+            ))}
+          </div>
+        ) : null}
+
+        {advancedMode && filteredPos.length ? (
+          <div className="entities">
+            {filteredPos.map(([type, items]) => (
+              <>
+                <span className="entity-type">{type}</span>
+                <span className="entity-name">{items.join(", ")}</span>
+              </>
+            ))}
+          </div>
+        ) : null}
+      </div>
+    </div>
+  );
+};
+
 export default function MainPage({ diff }) {
   const [filter, setFilter] = useState("");
   const [advancedMode, setAdvancedMode] = useState(false);
+
   const lunr = useMemo(() => {
     if (!diff) return;
 
@@ -72,16 +144,19 @@ export default function MainPage({ diff }) {
         <em>Trifles</em> and "A Jury of Her Peers"
       </h1>
       <h3>By Susan Glaspell</h3>
+
       <div className="diff-container">
         <div className="diff-row diff-header">
           <div className="diff-item header">
             <em>Trifles </em>
             <LinkButton href="https://www.gutenberg.org/files/59432/59432-h/59432-h.htm#Page_1" />
           </div>
+
           <div className="diff-item header">
             "A Jury of Her Peers"{" "}
             <LinkButton href="https://www.gutenberg.org/files/20872/20872-h/20872-h.htm#A_JURY_OF_HER_PEERS11" />
           </div>
+
           <div className="diff-item header">
             Annotations{" "}
             <AdvancedToggle
@@ -90,6 +165,7 @@ export default function MainPage({ diff }) {
             />
           </div>
         </div>
+
         <div className="diff-row">
           <input
             value={filter}
@@ -98,6 +174,7 @@ export default function MainPage({ diff }) {
             placeholder="Search for a word or phrase..."
           />
         </div>
+
         {filteredDiff && !filteredDiff.length && (
           <div className="diff-row">
             <div
@@ -109,75 +186,11 @@ export default function MainPage({ diff }) {
             </div>
           </div>
         )}
-        {(filteredDiff && !filteredDiff.length ? diff : filteredDiff).map(
-          ({
-            play,
-            story_text,
-            play_text,
-            story,
-            annotations,
-            entities,
-            pos
-          }) => {
-            const displayPos = ["VERB", "ADJ", "ADV"];
-            const filteredPos = Object.entries(pos)
-              .filter(([type, items]) => displayPos.includes(type))
-              .sort(
-                ([a], [b]) => displayPos.indexOf(a) - displayPos.indexOf(b)
-              );
 
-            return (
-              <div className="diff-row">
-                <div className="diff-item">
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: play_text || ""
-                    }}
-                  />
-                  <NumberIndicator value={play[0]?.index} />
-                </div>
-                <div className="diff-item">
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: story_text || ""
-                    }}
-                  />
-                  <NumberIndicator value={story[0]?.index} />
-                </div>
-                <div className="diff-item annotations">
-                  {annotations.map((text) =>
-                    text ? <div className="annotation">{text}</div> : null
-                  )}
-                  {advancedMode && entities.length ? (
-                    <div className="entities">
-                      {Object.entries(groupBy(entities, 1)).map(
-                        ([type, items]) => (
-                          <>
-                            <span className="entity-type">{type}</span>
-                            <span className="entity-name">
-                              {items.map(([name, type]) => name).join(", ")}
-                            </span>
-                          </>
-                        )
-                      )}
-                    </div>
-                  ) : null}
-                  {advancedMode && filteredPos.length ? (
-                    <div className="entities">
-                      {filteredPos.map(([type, items]) => (
-                        <>
-                          <span className="entity-type">{type}</span>
-                          <span className="entity-name">
-                            {items.join(", ")}
-                          </span>
-                        </>
-                      ))}
-                    </div>
-                  ) : null}
-                </div>
-              </div>
-            );
-          }
+        {(filteredDiff && !filteredDiff.length ? diff : filteredDiff).map(
+          (item) => (
+            <MainDiffRow advancedMode={advancedMode} {...item} />
+          )
         )}
       </div>
     </main>
