@@ -2,6 +2,7 @@ import { readFile } from "fs/promises";
 import { useState, useMemo } from "react";
 import * as elasticlunr from "elasticlunr";
 import { IconDatabase, IconDatabaseOff, IconExternalLink } from "@tabler/icons";
+import Head from "next/head";
 
 const groupBy = function (xs, key) {
   return xs.reduce(function (rv, x) {
@@ -140,6 +141,10 @@ export default function MainPage({ diff, introduction }) {
 
   return (
     <main>
+      <Head>
+        <title>Susan Glaspell's Trifles vs. "A Jury of Her Peers"</title>
+      </Head>
+
       <h1>
         Susan Glaspell's <em>Trifles</em> vs. "A Jury of Her Peers"
       </h1>
