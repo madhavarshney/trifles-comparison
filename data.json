@@ -1566,7 +1566,7 @@
     ],
     "story": [],
     "annotations": [
-      "Wow interestingly looks like Glaspell removed the repition about pleating the apron. This is a unique situation where the reader actually can see what was going on in the authors mind as we can clearly see that Glaspell removed this part of the story potentially deeming it not important or distracting."
+      "Interestingly, it looks like Glaspell removed the repition about pleating the apron. This is a unique situation where the reader actually can see what was going on in the authors mind as we can clearly see that Glaspell removed this part of the story potentially deeming it not important or distracting."
     ],
     "play_text": "<span class=\"character\">Hale</span>: She was rockin' back and forth. She had her apron in her hand and was kind of\u2014pleating it.",
     "story_text": "",
@@ -1668,7 +1668,7 @@
       }
     ],
     "annotations": [
-      "We see repitition about the wifes eyes being fixed on the husband."
+      "We see repitition about the wife's eyes being fixed on the husband."
     ],
     "play_text": "",
     "story_text": "As he asked it he took out a note-book and pencil. Mrs. Hale did not like the sight of that pencil. She kept her eye fixed on her husband, as if to keep him from saying unnecessary things that would go into that note-book and make trouble.",
@@ -4560,7 +4560,7 @@
       }
     ],
     "annotations": [
-      "\"Her eyes looked as if they can see a long way into things\" I wonder what this means."
+      "\"Her eyes looked as if they can see a long way into things\" -- what does this means?"
     ],
     "play_text": "",
     "story_text": "Then she looked again, and she wasn't so sure; in fact, she hadn't at any time been perfectly sure about Mrs. Peters. She had that shrinking manner, and yet her eyes looked as if they could see a long way into things.",
@@ -9571,7 +9571,7 @@
       }
     ],
     "annotations": [
-      "\"a\" -> \"the\" and \"strange\" -> \"clumsy\" (todo: elaborate)"
+      "Susan Glaspell appears to be revising her own text when she makes the following changes: \"a\" -> \"the\" and \"strange\" -> \"clumsy\". "
     ],
     "play_text": "<span class=\"character\">County Attorney</span>: <span class=\"highlight\">No, Peters, it's all perfectly clear except a reason for doing it. But you know juries when it comes to women. If there was some definite thing. Something to show\u2014something to make a story about\u2014a thing that would connect up with this </span>strange<span class=\"highlight\"> way of doing it</span>\u2014",
     "story_text": "\"<span class=\"highlight\">No, Peters,</span>\" said the county attorney incisively; \"<span class=\"highlight\">it's all perfectly clear, except the reason for doing it. But you know juries when it comes to women. If there was some definite thing\u2014something to show. Something to make a story about. A thing that would connect up with this </span>clumsy<span class=\"highlight\"> way of doing it</span>.\"",

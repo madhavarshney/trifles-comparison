@@ -107,7 +107,7 @@ const MainDiffRow = ({
   );
 };
 
-export default function MainPage({ diff }) {
+export default function MainPage({ diff, introduction }) {
   const [filter, setFilter] = useState("");
   const [advancedMode, setAdvancedMode] = useState(false);
 
@@ -145,7 +145,12 @@ export default function MainPage({ diff }) {
       </h1>
       <h3>By Madhav Varshney and Maxim Bravo</h3>
 
-      <div className="diff-container">
+      <section className="introduction">
+        <h2>Introduction</h2>
+        {introduction}
+      </section>
+
+      <section className="diff-container">
         <div className="diff-row diff-header">
           <div className="diff-item header">
             <em>Trifles </em>
@@ -192,7 +197,7 @@ export default function MainPage({ diff }) {
             <MainDiffRow advancedMode={advancedMode} {...item} />
           )
         )}
-      </div>
+      </section>
     </main>
   );
 }
@@ -200,7 +205,8 @@ export default function MainPage({ diff }) {
 export async function getStaticProps(context) {
   return {
     props: {
-      diff: JSON.parse(await readFile("data.json"))
+      diff: JSON.parse(await readFile("data.json")),
+      introduction: (await readFile("introduction.md")).toString(),
     }
   };
 }
