@@ -141,9 +141,9 @@ export default function MainPage({ diff }) {
   return (
     <main>
       <h1>
-        <em>Trifles</em> and "A Jury of Her Peers"
+        Susan Glaspell's <em>Trifles</em> vs. "A Jury of Her Peers"
       </h1>
-      <h3>By Susan Glaspell</h3>
+      <h3>By Madhav Varshney and Maxim Bravo</h3>
 
       <div className="diff-container">
         <div className="diff-row diff-header">
