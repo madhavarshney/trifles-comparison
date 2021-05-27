@@ -19,6 +19,8 @@ jobs:
     - run: yarn install --frozen-lockfile
 
     - run: yarn run build
+      env:
+        BUILD_BASEPATH: ${{ format('/{0}', github.event.repository.name) }}
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@4.1.3
