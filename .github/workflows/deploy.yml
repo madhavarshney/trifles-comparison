@@ -22,6 +22,8 @@ jobs:
       env:
         BUILD_BASEPATH: ${{ format('/{0}', github.event.repository.name) }}
 
+    - run: touch out/.nojekyll
+
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@4.1.3
       with:
