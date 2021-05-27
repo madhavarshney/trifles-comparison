@@ -1,6 +1,6 @@
 {
   "name": "trifles-comparison",
-  "description": "A comparison between Susan Glaspell's Trifles and A Jury of Her Peers",
+  "description": "A comparison between Susan Glaspell's Trifles and \"A Jury of Her Peers\"",
   "version": "1.0.0",
   "scripts": {
     "dev": "next",
